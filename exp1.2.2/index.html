@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dynamic Product Filter</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+
+    select {
+      padding: 8px;
+      margin-bottom: 20px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      transition: all 0.3s ease;
+    }
+
+    .card {
+      padding: 15px;
+      background: #f4f4f4;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Product Filter</h2>
+
+  <select id="sortDropdown">
+    <option value="default">Sort By</option>
+    <option value="priceLow">Price: Low to High</option>
+    <option value="priceHigh">Price: High to Low</option>
+    <option value="rating">Rating</option>
+  </select>
+
+  <div class="grid" id="productGrid"></div>
+
+  <script>
+    const products = [
+      { name: "Laptop", price: 800, rating: 4.5 },
+      { name: "Phone", price: 500, rating: 4.2 },
+      { name: "Headphones", price: 150, rating: 4.8 },
+      { name: "Keyboard", price: 100, rating: 4.1 },
+      { name: "Monitor", price: 300, rating: 4.6 }
+    ];
+
+    const grid = document.getElementById("productGrid");
+    const dropdown = document.getElementById("sortDropdown");
+
+    function renderProducts(list) {
+      grid.innerHTML = "";
+      list.forEach(p => {
+        const card = document.createElement("div");
+        card.className = "card";
+        card.innerHTML = `
+          <h3>${p.name}</h3>
+          <p>Price: $${p.price}</p>
+          <p>Rating: ⭐ ${p.rating}</p>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    dropdown.addEventListener("change", () => {
+      let sorted = [...products];
+
+      if (dropdown.value === "priceLow")
+        sorted.sort((a,b) => a.price - b.price);
+      else if (dropdown.value === "priceHigh")
+        sorted.sort((a,b) => b.price - a.price);
+      else if (dropdown.value === "rating")
+        sorted.sort((a,b) => b.rating - a.rating);
+
+      renderProducts(sorted);
+    });
+
+   
+    renderProducts(products);
+  </script>
+
+</body>
+</html>
