@@ -1,14 +1,14 @@
 
 :root {
-    --bg-color: #ed2626;
-    --text-color: #d5e520;
-    --card-color: #1dc3e8;
+    --bg-color: #26d2ed;
+    --text-color: #984bf7;
+    --card-color: #e9eff0;
 }
 
 [data-theme="dark"] {
-    --bg-color: #421dfa;
-    --text-color: #e622ae;
-    --card-color: #29c7f3;
+    --bg-color: #07031a;
+    --text-color: #e62222;
+    --card-color: #66fc2f;
 }
 
 body {
