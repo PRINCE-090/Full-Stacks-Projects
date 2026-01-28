@@ -14,7 +14,11 @@
 function countChars() {
     let text = document.getElementById("text").value;
     document.getElementById("count").innerText = text.length;
+    if (text.length > 150) {
+        document.getElementById("text").value = text.slice(0, 150);
+    }
 }
+
 </script>
 
 </body>
